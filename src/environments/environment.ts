@@ -10,4 +10,5 @@
 
 export const environment = {
   production: false,
+  server: 'ide.socomaconstruction.com:4201',
 };
