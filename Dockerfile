@@ -1,4 +1,4 @@
-FROM node:alpine as builder
+FROM node:8-alpine as builder
 
 COPY package.json package-lock.json ./
 
@@ -14,7 +14,7 @@ COPY . .
 ## Build the angular app in production mode and store the artifacts in dist folder
 RUN $(npm bin)/ng build --prod
 
-FROM nginx:alpine
+FROM nginx:1.13.3-alpine
 
 ## Copy our default nginx config
 COPY nginx/default.conf /etc/nginx/conf.d/
