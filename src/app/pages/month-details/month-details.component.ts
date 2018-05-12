@@ -108,6 +108,7 @@ export class MonthDetailsComponent implements OnInit {
     if(this.all_employe) {
       var data = this.timeInService.getMonthDetails(this.month,'all').subscribe(data => {
         this.source.load(data);
+        updateData
       });
     } else {
       var data = this.timeInService.getMonthDetails(this.month,this.employe).subscribe(data => {

@@ -5,7 +5,7 @@ import {Observable} from "rxjs/Observable";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/of';
 
-const url = "http://192.168.1.35:4201";
+const url = "http://server:4201";
 
 export interface IEmployeeLine {
     "employe_code": string,
