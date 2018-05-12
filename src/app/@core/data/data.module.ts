@@ -1,12 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UserService } from './users.service';
 import { StateService } from './state.service';
+import { TimeInService } from './timein.service';
 
 const SERVICES = [
-  UserService,
   StateService,
+  TimeInService,
 ];
 
 @NgModule({

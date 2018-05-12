@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MonthReviewComponent } from './month-review/month-review.component';
+import { MonthDetailsComponent } from './month-details/month-details.component';
 
 const routes: Routes = [{
   path: '',
@@ -11,6 +13,14 @@ const routes: Routes = [{
     {
       path: 'dashboard',
       component: DashboardComponent,
+    },
+    {
+      path: 'month-review',
+      component: MonthReviewComponent,
+    },
+    {
+      path: 'month-details',
+      component: MonthDetailsComponent,
     },
     {
       path: '',

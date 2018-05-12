@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div>
+            <button type="button" class="btn btn-success btn-icon" (click)=onPreviousMonth()>
+                <i class="nb-skip-backward-outline"></i>
+            </button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-hero-secondary">{{month}}</button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success btn-icon" (click)=onNextMonth()>
+                <i class="nb-skip-forward-outline"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <nb-card>
+          <nb-card-header>
+            Résumé par mois
+          </nb-card-header>
+        
+          <nb-card-body>
+            <ng2-smart-table [settings]="settings" [source]="source">
+            </ng2-smart-table>
+          </nb-card-body>
+          
+          <nb-card-footer>
+            <ng2-smart-table [settings]="settingsTotal" [source]="sourceTotal">
+            </ng2-smart-table>
+          </nb-card-footer>
+        </nb-card>
+    </div>
+</div>
