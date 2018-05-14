@@ -5,5 +5,5 @@
  */
 export const environment = {
   production: true,
-  server: 'dashboard_server.socomaconstruction.com',
+  server: 'https://dashboard_server.socomaconstruction.com',
 };
