@@ -10,5 +10,5 @@
 
 export const environment = {
   production: false,
-  server: 'ide.socomaconstruction.com:4201',
+  server: 'http://ide.socomaconstruction.com:4201',
 };
