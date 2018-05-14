@@ -8,6 +8,8 @@ import { environment } from '../../../environments/environment';
 
 const url = environment.server;
 
+console.log('use server" + url);
+
 export interface IEmployeeLine {
     "employe_code": string,
     "employe": string
