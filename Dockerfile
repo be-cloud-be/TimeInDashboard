@@ -1,6 +1,6 @@
 FROM node:8-alpine as builder
 
-RUN apk add \
+RUN apk --no-cache add \
         python \
         make \
         g++
