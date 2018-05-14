@@ -1,5 +1,10 @@
 FROM node:8-alpine as builder
 
+RUN apk add \
+        python \
+        make \
+        g++
+
 COPY package.json package-lock.json ./
 
 RUN npm install npm@latest -g
@@ -14,12 +19,7 @@ WORKDIR /ng-app
 
 COPY . .
 
-RUN apk add --no-cache --virtual .gyp \
-        python \
-        make \
-        g++ \
-    && ng build --prod \ 
-    && apk del .gyp
+RUN ng build --prod
 
 FROM nginx:1.13.3-alpine
 
