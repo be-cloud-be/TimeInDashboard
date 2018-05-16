@@ -15,6 +15,12 @@ export interface IEmployeeLine {
     "employe": string
 }
 
+export interface IEmployeeHoursLine {
+    "employe_code": string,
+    "employe": string,
+    "Heures": number
+}
+
 export interface IMonthDetailsLine {
     "Chantier": string,
     "Activite": string,
@@ -87,6 +93,14 @@ export class TimeInService {
         return this.http.get(`${url}/month_details?month=${month}&code=${employe}`)
             .map((response: Response) => {
                  return <IMonthDetailsLine[]>response.json();
+             })
+             .catch(this.handleError);
+    }
+    
+    getEmployeeList(month : string, chantier : string, activite : string) {
+        return this.http.get(`${url}/month_employee_details?month=${month}&chantier=${chantier}&activite=${activite}`)
+            .map((response: Response) => {
+                 return <IEmployeeHoursLine[]>response.json();
              })
              .catch(this.handleError);
     }
