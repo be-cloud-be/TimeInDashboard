@@ -23,20 +23,38 @@
         </div>
     </div>
     <div class="row">
-        <nb-card>
-          <nb-card-header>
-            Détails par mois
-          </nb-card-header>
-        
-          <nb-card>
-            <chart type="bar" [data]="data" [options]="options" style="width: 800px; height: 430px;"></chart>
-          </nb-card>
-        
-          <nb-card-body>
-            <ng2-smart-table [settings]="settings" [source]="source">
-            </ng2-smart-table>
-          </nb-card-body>
-          
-        </nb-card>
+        <div class="col-md-8">
+            <nb-card>
+              <nb-card-header>
+                Détails par mois
+              </nb-card-header>
+            
+              <nb-card>
+                <chart type="horizontalBar" [data]="data" [options]="options" style="width: 100%; height: 800px;" (clickElement)="updateEmployeDetails($event)"></chart>
+              </nb-card>
+            
+              <nb-card-body>
+                <ng2-smart-table [settings]="settings" [source]="source">
+                </ng2-smart-table>
+              </nb-card-body>
+              
+            </nb-card>
+        </div>
+        <div class="col-md-4">
+            <nb-card>
+              <nb-card-header>
+                Détails par employé
+              </nb-card-header>
+              
+              <nb-card-body>
+                    <div *ngIf="employeeList">
+                        <div class="row" *ngFor="let employee of (employeeList| async)">
+                            <div class="col-md-8">{{employee.employe}}</div>
+                            <div class="col-md-4" align="right">{{employee.Heures}}</div>
+                        </div>
+                    </div>
+              </nb-card-body>
+            </nb-card>
+        </div>
     </div>
 </div>
