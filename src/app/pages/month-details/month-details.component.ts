@@ -3,6 +3,9 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { TimeInService, IEmployeeLine, IEmployeeHoursLine } from '../../@core/data/timein.service';
 import { Observable } from "rxjs/Observable";
 import { NbThemeService, NbColorHelper } from '@nebular/theme';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { EmployeeListModalComponent } from './employee-list-modal/employee-list-modal.component';
 
 @Component({
   selector: 'month-details',
@@ -52,7 +55,7 @@ export class MonthDetailsComponent implements OnInit {
     'A répartir' : '#6A3A4C',
   };
 
-  constructor(private timeInService : TimeInService, private theme: NbThemeService) {
+  constructor(private timeInService : TimeInService, private theme: NbThemeService, private modalService: NgbModal) {
     this.timeInService.getMonthList().subscribe(data => {this.monthList = data});
     this.timeInService.getCurrentMonth().subscribe(data => {this.month = data; this.updateData();});
     this.employeList = this.timeInService.getEmployees();
@@ -171,15 +174,14 @@ export class MonthDetailsComponent implements OnInit {
     }
   }
   
-  employeeList : Observable<IEmployeeLine[]>;
-  
   updateEmployeDetails($event) {
-    console.log($event);
     var clickedBar = $event[0];
     if (clickedBar) {
       var chantier = this.data.labels[clickedBar._index];
       var activite = this.data.datasets[clickedBar._datasetIndex].label;
-      this.employeeList = this.timeInService.getEmployeeList(this.month, chantier, activite);
+      var employeeList = this.timeInService.getEmployeeList(this.month, chantier, activite);
+      var activeModal = this.modalService.open(EmployeeListModalComponent, { size: 'lg', container: 'nb-layout' });
+      activeModal.componentInstance.employeeList = employeeList;
     }
   }  
 }
