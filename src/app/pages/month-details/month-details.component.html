@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <nb-card>
               <nb-card-header>
                 Détails par mois
@@ -38,22 +38,6 @@
                 </ng2-smart-table>
               </nb-card-body>
               
-            </nb-card>
-        </div>
-        <div class="col-md-4">
-            <nb-card>
-              <nb-card-header>
-                Détails par employé
-              </nb-card-header>
-              
-              <nb-card-body>
-                    <div *ngIf="employeeList">
-                        <div class="row" *ngFor="let employee of (employeeList| async)">
-                            <div class="col-md-8">{{employee.employe}}</div>
-                            <div class="col-md-4" align="right">{{employee.Heures}}</div>
-                        </div>
-                    </div>
-              </nb-card-body>
             </nb-card>
         </div>
     </div>
