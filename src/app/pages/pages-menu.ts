@@ -8,15 +8,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Month Review',
+    title: 'Revue Mensuelle',
     icon: 'month-review',
     link: '/pages/month-review',
     home: false,
   },
   {
-    title: 'Month Details',
+    title: 'Détails Mensuelle',
     icon: 'month-details',
     link: '/pages/month-details',
+    home: false,
+  },{
+    title: 'Analyse Chantiers',
+    icon: 'analyse-chantier',
+    link: '/pages/analyse-chantier',
     home: false,
   },
 ];
