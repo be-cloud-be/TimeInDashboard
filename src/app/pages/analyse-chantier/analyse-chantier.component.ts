@@ -32,6 +32,9 @@ export class AnalyseChantierComponent implements OnInit {
 
   data : any;
 
+  options = {
+  };
+
   updateData() {
     this.timeInService.getChantierByActivite(this.chantier).subscribe(data => {
         this.updateGraphData(data);
