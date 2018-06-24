@@ -9,6 +9,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { MonthDetailsComponent } from './month-details/month-details.component';
 import { ChartModule } from 'angular2-chartjs';
 import { EmployeeListModalComponent } from './month-details/employee-list-modal/employee-list-modal.component';
+import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -21,6 +22,7 @@ const PAGES_COMPONENTS = [
     DashboardModule,
     Ng2SmartTableModule,
     ChartModule,
+    MiscellaneousModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

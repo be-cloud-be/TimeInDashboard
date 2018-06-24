@@ -5,10 +5,12 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MonthReviewComponent } from './month-review/month-review.component';
 import { MonthDetailsComponent } from './month-details/month-details.component';
+import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
+
   children: [
     {
       path: 'dashboard',
