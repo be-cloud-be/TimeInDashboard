@@ -27,14 +27,13 @@ import {
   SearchInputComponent,
   ThemeSettingsComponent,
   ThemeSwitcherComponent,
-  TinyMCEComponent,
 } from './components';
 import { CapitalizePipe, PluralPipe, RoundPipe, TimingPipe } from './pipes';
 import {
-  OneColumnLayoutComponent,
+  //OneColumnLayoutComponent,
   SampleLayoutComponent,
-  ThreeColumnsLayoutComponent,
-  TwoColumnsLayoutComponent,
+  //ThreeColumnsLayoutComponent,
+  //TwoColumnsLayoutComponent,
 } from './layouts';
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
@@ -64,11 +63,10 @@ const COMPONENTS = [
   FooterComponent,
   SearchInputComponent,
   ThemeSettingsComponent,
-  TinyMCEComponent,
-  OneColumnLayoutComponent,
+  //OneColumnLayoutComponent,
   SampleLayoutComponent,
-  ThreeColumnsLayoutComponent,
-  TwoColumnsLayoutComponent,
+  //ThreeColumnsLayoutComponent,
+  //TwoColumnsLayoutComponent,
 ];
 
 const PIPES = [
@@ -81,9 +79,9 @@ const PIPES = [
 const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot(
     {
-      name: 'cosmic',
+      name: 'default',
     },
-    [ DEFAULT_THEME, COSMIC_THEME ],
+    [DEFAULT_THEME, COSMIC_THEME],
   ).providers,
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,

@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div>
+            <button type="button" class="btn btn-success btn-icon" (click)=onPreviousMonth()>
+                <i class="nb-skip-backward-outline"></i>
+            </button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-hero-secondary">{{month}}</button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success btn-icon" (click)=onNextMonth()>
+                <i class="nb-skip-forward-outline"></i>
+            </button>
+        </div>
+        <div style="padding:10px;">
+            <nb-checkbox name='all_employee' [(ngModel)]="all_employe" (change)=onChangeAll()>All</nb-checkbox>
+        </div>
+        <div>
+            <select class="form-control" (change)="onChangeEmploye($event.target.value)" *ngIf="!all_employe">
+                <option *ngFor="let employe of (employeList | async)" value="{{ employe.employe_code }}">{{ employe.employe }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nb-card>
+              <nb-card-header>
+                Détails par mois
+              </nb-card-header>
+            
+              <nb-card>
+                <chart type="horizontalBar" [data]="data" [options]="options" style="width: 100%; height: 800px;" (clickElement)="updateEmployeDetails($event)"></chart>
+              </nb-card>
+            
+              <nb-card-body>
+                <ng2-smart-table [settings]="settings" [source]="source">
+                </ng2-smart-table>
+              </nb-card-body>
+              
+            </nb-card>
+        </div>
+    </div>
+</div>
