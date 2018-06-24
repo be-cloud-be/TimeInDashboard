@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nb-card>
+                <select class="form-control" (change)="onChangeChantier($event.target.value)">
+                    <option *ngFor="let chantier of (chantierList | async)" value="{{ chantier.Chantier }}">{{ chantier.Chantier }}</option>
+                </select>
+            </nb-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nb-card>
+              <nb-card-header>
+                Détails par chantier - {{total_heures}} heures au total
+              </nb-card-header>
+            
+              <nb-card-body>
+                <chart type="horizontalBar" [data]="data" [options]="options" style="width: 100%; height: 800px;" (clickElement)="updateEmployeDetails($event)"></chart>
+              </nb-card-body>
+            
+            </nb-card>
+        </div>
+    </div>
+</div>
