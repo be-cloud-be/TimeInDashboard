@@ -15,6 +15,10 @@ export interface IEmployeeLine {
     "employe": string
 }
 
+export interface IChantierLine {
+    "chantier": string
+}
+
 export interface IEmployeeHoursLine {
     "employe_code": string,
     "employe": string,
@@ -101,6 +105,22 @@ export class TimeInService {
         return this.http.get(`${url}/month_employee_details?month=${month}&chantier=${chantier}&activite=${activite}`)
             .map((response: Response) => {
                  return <IEmployeeHoursLine[]>response.json();
+             })
+             .catch(this.handleError);
+    }
+    
+    getChantiers() {
+        return this.http.get(`${url}/chantiers`)
+            .map((response: Response) => {
+                 return <IChantierLine[]>response.json();
+             })
+             .catch(this.handleError);
+    }
+    
+    getChantierByActivite(chantier : string) {
+        return this.http.get(`${url}/chantier_activites?chantier=${chantier}`)
+            .map((response: Response) => {
+                 return <IMonthDetailsLine[]>response.json();
              })
              .catch(this.handleError);
     }

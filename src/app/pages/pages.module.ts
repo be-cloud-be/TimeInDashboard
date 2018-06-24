@@ -10,6 +10,7 @@ import { MonthDetailsComponent } from './month-details/month-details.component';
 import { ChartModule } from 'angular2-chartjs';
 import { EmployeeListModalComponent } from './month-details/employee-list-modal/employee-list-modal.component';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
+import { AnalyseChantierComponent } from './analyse-chantier/analyse-chantier.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -29,6 +30,7 @@ const PAGES_COMPONENTS = [
     MonthReviewComponent,
     MonthDetailsComponent,
     EmployeeListModalComponent,
+    AnalyseChantierComponent,
   ],
   entryComponents: [EmployeeListModalComponent]
 })
