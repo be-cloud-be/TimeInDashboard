@@ -4,11 +4,36 @@
   </nb-card-header>
   
   <nb-card-body>
-        <div *ngIf="employeeList">
-            <div class="row" *ngFor="let employee of (employeeList| async)">
-                <div class="col-md-8">{{employee.employe}}</div>
-                <div class="col-md-4" align="right">{{employee.Heures}}</div>
-            </div>
+    <h2>{{chantier}} - {{activite}} - {{month}}</h2>    
+    <div *ngIf="employeeList">
+        <div class="row" *ngFor="let employee of (employeeList | async)">
+            <div class="col-md-8">{{employee.employe}}</div>
+            <div class="col-md-3" align="right">{{employee.Heures}}</div>
+            <div class="col-md-1" align="right"><input type="checkbox" value="{{employee.employe_code}}" (click)="selectEmployee($event)"></div>
         </div>
+    </div>
   </nb-card-body>
+  <nb-card-footer>
+    <div class="row" *ngIf="employeeSelected.size > 0">
+      <div class="col-md-6">
+        <select class="form-control" (change)="onChangeChantier($event.target.value)">
+          <option *ngFor="let chantier of (chantiers | async)" value="{{ chantier.ChantierCode }}">{{ chantier.Chantier }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <select class="form-control" (change)="onChangeActivite($event.target.value)">
+          <option *ngFor="let activite of (activites | async)" value="{{ activite.ActiviteCode }}">{{ activite.Activite }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row" *ngIf="employeeSelected.size > 0">
+      <div class="col-md-6">
+        <button (click)="changeChantier()">Change Chantier</button>
+      </div>
+      <div class="col-md-6">
+        <button (click)="changeActivite()">Change Activite</button>
+      </div>
+    </div>
+    <button (click)="log_details()">Log details</button>
+  </nb-card-footer>
 </nb-card>

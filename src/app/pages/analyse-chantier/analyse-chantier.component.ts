@@ -32,6 +32,9 @@ export class AnalyseChantierComponent implements OnInit {
 
   data : any;
 
+  graph_conf = {
+  };
+
   options = {
   };
 
@@ -66,6 +69,9 @@ export class AnalyseChantierComponent implements OnInit {
       var employeeList = this.timeInService.getEmployeeList('all', chantier, activite);
       var activeModal = this.modalService.open(EmployeeListModalComponent, { size: 'lg', container: 'nb-layout' });
       activeModal.componentInstance.employeeList = employeeList;
+      activeModal.componentInstance.chantier = chantier;
+      activeModal.componentInstance.activite = activite;
+      activeModal.componentInstance.month = 'all';
     }
   }
 }

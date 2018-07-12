@@ -141,6 +141,7 @@ export class MonthDetailsComponent implements OnInit {
   updateData() {
     if(this.all_employe) {
       this.timeInService.getMonthDetails(this.month,'all').subscribe(data => {
+        console.log(data);
         this.source.load(data);
         this.updateGraphData(data);
       });
@@ -153,6 +154,8 @@ export class MonthDetailsComponent implements OnInit {
   }
   
   updateGraphData(data : any) {
+    var chantiers_code = Array.from(new Set(data.map(a => a.ChantierCode)));
+    var activites_code = Array.from(new Set(data.map(a => a.ActiviteCode)));
     var chantiers = Array.from(new Set(data.map(a => a.Chantier)));
     var activites = Array.from(new Set(data.map(a => a.Activite)));
     var data_matrix : number[][] = Array(activites.length).fill(0).map(() => Array(chantiers.length).fill(0));
@@ -160,12 +163,14 @@ export class MonthDetailsComponent implements OnInit {
       data_matrix[activites.indexOf(data[i].Activite)][chantiers.indexOf(data[i].Chantier)] += data[i].Heures;
     }
     this.data = {
+        codes: chantiers_code,
         labels: chantiers,
         datasets: []
     }
     for(var i = 0; i < data_matrix.length; i++) {
       this.data.datasets.push({
           label: activites[i],
+          code: activites_code[i],
           data: data_matrix[i],
           borderWidth: 2,
           backgroundColor: this.color_index[String(activites[i])],
@@ -177,11 +182,18 @@ export class MonthDetailsComponent implements OnInit {
   updateEmployeDetails($event) {
     var clickedBar = $event[0];
     if (clickedBar) {
+      var chantier_code = this.data.codes[clickedBar._index];
+      var activite_code = this.data.datasets[clickedBar._datasetIndex].code;
       var chantier = this.data.labels[clickedBar._index];
       var activite = this.data.datasets[clickedBar._datasetIndex].label;
       var employeeList = this.timeInService.getEmployeeList(this.month, chantier, activite);
       var activeModal = this.modalService.open(EmployeeListModalComponent, { size: 'lg', container: 'nb-layout' });
       activeModal.componentInstance.employeeList = employeeList;
+      activeModal.componentInstance.chantier = chantier;
+      activeModal.componentInstance.activite = activite;
+      activeModal.componentInstance.chantier_code = chantier_code;
+      activeModal.componentInstance.activite_code = activite_code;
+      activeModal.componentInstance.month = this.month;
     }
   }  
 }

@@ -1,10 +1,28 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
             <nb-card>
                 <select class="form-control" (change)="onChangeChantier($event.target.value)">
                     <option *ngFor="let chantier of (chantierList | async)" value="{{ chantier.Chantier }}">{{ chantier.Chantier }}</option>
                 </select>
+            </nb-card>
+        </div>
+        <div class="col-md-4">
+            <nb-card>
+                <label class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="customRadio" checked value="activite" [(ngModel)]="graph_conf.mode">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Par activité</span>
+                </label>
+            </nb-card>
+        </div>
+        <div class="col-md-4">
+            <nb-card>
+                <label class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="customRadio" value="employee" [(ngModel)]="graph_conf.mode">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Par employé</span>
+                </label>
             </nb-card>
         </div>
     </div>

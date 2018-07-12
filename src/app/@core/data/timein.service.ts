@@ -16,7 +16,13 @@ export interface IEmployeeLine {
 }
 
 export interface IChantierLine {
+    "chantier_code": string
     "chantier": string
+}
+
+export interface IActiviteLine {
+    "activite_code": string
+    "activite": string
 }
 
 export interface IEmployeeHoursLine {
@@ -26,7 +32,9 @@ export interface IEmployeeHoursLine {
 }
 
 export interface IMonthDetailsLine {
+    "ChantierCode": string,
     "Chantier": string,
+    "ActiviteCode": string,
     "Activite": string,
     "Heures": number
 }
@@ -66,7 +74,8 @@ export class TimeInService {
     }
     
     getCurrentMonth(): Observable<string> {
-        return Observable.of('2018-05');
+        var d = new Date();
+        return Observable.of(d.getFullYear() + "-" + ((d.getMonth() + 1) < 10 ? "0" + (d.getMonth()+1) : d.getMonth()+1));
     }
     
     getMonthSummary(month : string) {
@@ -117,6 +126,14 @@ export class TimeInService {
              .catch(this.handleError);
     }
     
+    getActivites() {
+        return this.http.get(`${url}/activites`)
+            .map((response: Response) => {
+                 return <IActiviteLine[]>response.json();
+             })
+             .catch(this.handleError);
+    }
+    
     getChantierByActivite(chantier : string) {
         return this.http.get(`${url}/chantier_activites?chantier=${chantier}`)
             .map((response: Response) => {
@@ -125,7 +142,16 @@ export class TimeInService {
              .catch(this.handleError);
     }
     
+    changeChantier(month: string, employe_code:string, activite_code: string, from_code: string, to_code: string) {
+        console.log(`${url}/change_chantier?month=${month}&employe_code=${employe_code}&activite_code=${activite_code}&from_code=${from_code}&to_code=${to_code}`);
+        return this.http.patch(`${url}/change_chantier?month=${month}&employe_code=${employe_code}&activite_code=${activite_code}&from_code=${from_code}&to_code=${to_code}`, {})
+            .map((response: Response) => {
+                 return response.json();
+             })
+             .catch(this.handleError);
+    }
+    
     private handleError(error: Response) {
-         return Observable.throw(error.statusText);
+        return Observable.throw(error.status + '-' + error.statusText);
     }
 }
