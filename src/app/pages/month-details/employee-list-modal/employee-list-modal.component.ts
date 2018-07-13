@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { TimeInService, IEmployeeLine, IChantierLine, IActiviteLine, IEmployeeHoursLine } from '../../../@core/data/timein.service';
 
@@ -18,6 +18,8 @@ export class EmployeeListModalComponent implements OnInit {
   @Input() chantier : string;
   @Input() activite : string;
   @Input() month : string;
+
+  @Output() onChangeData = new EventEmitter<any>(true);
 
   chantiers : Observable<IChantierLine[]>;
   activites : Observable<IActiviteLine[]>;
@@ -51,21 +53,27 @@ export class EmployeeListModalComponent implements OnInit {
   }
   
   changeChantier() {
-    var emps = Array.from(this.employeeSelected);
+    var emps:string[] = Array.from(this.employeeSelected);
     for (var i = 0; i < emps.length; i++) {
       console.log(emps[i]);
       this.timeInService.changeChantier(this.month, emps[i], this.activite_code, this.chantier_code, this.new_chantier)
         .subscribe(data => {
-          console.log(data);
+          this.chantier_code = this.new_chantier;
+          this.onChangeData.emit('Chantier changé de ' + this.chantier_code +' à ' + this.new_chantier);
         });
     }
   }
   
   changeActivite() {
-    console.log(this.employeeSelected);
-    console.log(this.activite_code);
-    console.log(this.new_activite);
-    console.log(this.month);
+    var emps:string[] = Array.from(this.employeeSelected);
+    for (var i = 0; i < emps.length; i++) {
+      console.log(emps[i]);
+      this.timeInService.changeActivite(this.month, emps[i], this.chantier_code, this.activite_code, this.new_activite)
+        .subscribe(data => {
+          this.activite_code = this.new_activite;
+          this.onChangeData.emit('Activité changée de ' + this.activite_code + ' à ' + this.new_activite);
+        });
+    }
   }
   
   log_details() {

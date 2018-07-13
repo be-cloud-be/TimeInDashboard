@@ -143,8 +143,15 @@ export class TimeInService {
     }
     
     changeChantier(month: string, employe_code:string, activite_code: string, from_code: string, to_code: string) {
-        console.log(`${url}/change_chantier?month=${month}&employe_code=${employe_code}&activite_code=${activite_code}&from_code=${from_code}&to_code=${to_code}`);
         return this.http.patch(`${url}/change_chantier?month=${month}&employe_code=${employe_code}&activite_code=${activite_code}&from_code=${from_code}&to_code=${to_code}`, {})
+            .map((response: Response) => {
+                 return response.json();
+             })
+             .catch(this.handleError);
+    }
+    
+    changeActivite(month: string, employe_code:string, chantier_code: string, from_code: string, to_code: string) {
+        return this.http.patch(`${url}/change_activite?month=${month}&employe_code=${employe_code}&chantier_code=${chantier_code}&from_code=${from_code}&to_code=${to_code}`, {})
             .map((response: Response) => {
                  return response.json();
              })

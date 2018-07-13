@@ -182,18 +182,17 @@ export class MonthDetailsComponent implements OnInit {
   updateEmployeDetails($event) {
     var clickedBar = $event[0];
     if (clickedBar) {
-      var chantier_code = this.data.codes[clickedBar._index];
-      var activite_code = this.data.datasets[clickedBar._datasetIndex].code;
-      var chantier = this.data.labels[clickedBar._index];
-      var activite = this.data.datasets[clickedBar._datasetIndex].label;
-      var employeeList = this.timeInService.getEmployeeList(this.month, chantier, activite);
       var activeModal = this.modalService.open(EmployeeListModalComponent, { size: 'lg', container: 'nb-layout' });
-      activeModal.componentInstance.employeeList = employeeList;
-      activeModal.componentInstance.chantier = chantier;
-      activeModal.componentInstance.activite = activite;
-      activeModal.componentInstance.chantier_code = chantier_code;
-      activeModal.componentInstance.activite_code = activite_code;
+      activeModal.componentInstance.chantier = this.data.labels[clickedBar._index];
+      activeModal.componentInstance.activite = this.data.datasets[clickedBar._datasetIndex].label;
+      activeModal.componentInstance.employeeList = this.timeInService.getEmployeeList(this.month, activeModal.componentInstance.chantier, activeModal.componentInstance.activite);
+      activeModal.componentInstance.chantier_code = this.data.codes[clickedBar._index];
+      activeModal.componentInstance.activite_code = this.data.datasets[clickedBar._datasetIndex].code;
       activeModal.componentInstance.month = this.month;
+      activeModal.componentInstance.onChangeData.subscribe((data: any) => {
+            console.log(data);
+            this.updateData();
+      });
     }
   }  
 }
