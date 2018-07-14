@@ -33,6 +33,7 @@ export class AnalyseChantierComponent implements OnInit {
   data : any;
 
   graph_conf = {
+    mode : 'auto',
   };
 
   options = {
