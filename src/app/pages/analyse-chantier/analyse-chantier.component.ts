@@ -23,7 +23,7 @@ export class AnalyseChantierComponent implements OnInit {
     this.chantierList.subscribe(data => {
       this.chantierMap = new Map();
       for(let c of data) {
-        this.chantierMap.set(c.Chantier,c.ChantierCode);
+        this.chantierMap.set(c.chantier,c.chantier_code);
       }
     });
   }
