@@ -10,6 +10,6 @@
 
 export const environment = {
   production: false,
-  server: 'http://ide.socomaconstruction.com:4201',
+  server: 'https://dashboard-server.socomaconstruction.com',
   //server: 'http://192.168.1.35:4201',
 };
