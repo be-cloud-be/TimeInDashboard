@@ -11,23 +11,23 @@ const url = environment.server;
 console.log('use server' + url);
 
 export interface IEmployeeLine {
-    "employe_code": string,
-    "employe": string
+    "EmployeCode": string,
+    "Employe": string
 }
 
 export interface IChantierLine {
-    "chantier_code": string
-    "chantier": string
+    "ChantierCode": string
+    "Chantier": string
 }
 
 export interface IActiviteLine {
-    "activite_code": string
-    "activite": string
+    "ActiviteCode": string
+    "Activite": string
 }
 
 export interface IEmployeeHoursLine {
-    "employe_code": string,
-    "employe": string,
+    "EmployeCode": string,
+    "Employe": string,
     "Heures": number
 }
 
@@ -40,8 +40,8 @@ export interface IMonthDetailsLine {
 }
 
 export interface ISummaryLine {
-    "employe_code": string,
-    "employe": string,
+    "EmployeCode": string,
+    "Employe": string,
     "Mois": string,
     "Heures": number,
     "HeuresSupp": number,
@@ -73,12 +73,12 @@ export class TimeInService {
         return Observable.of(['2018-01','2018-02','2018-03','2018-04','2018-05','2018-06','2018-07','2018-08','2018-09','2018-10','2018-11','2018-12',
                               '2019-01','2019-02','2019-03','2019-04','2019-05','2019-06','2019-07','2019-08','2019-09','2019-10','2019-11','2019-12']);
     }
-    
+
     getCurrentMonth(): Observable<string> {
         var d = new Date();
         return Observable.of(d.getFullYear() + "-" + ((d.getMonth() + 1) < 10 ? "0" + (d.getMonth()+1) : d.getMonth()+1));
     }
-    
+
     getMonthSummary(month : string) {
         return this.http.get(`${url}/month_summary?month=${month}`)
             .map((response: Response) => {
@@ -86,7 +86,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     getDashboardHoursSummary() {
         return this.http.get(`${url}/dashboard_month_hours_summary`)
             .map((response: Response) => {
@@ -94,7 +94,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     getEmployees() {
         return this.http.get(`${url}/employees`)
             .map((response: Response) => {
@@ -102,7 +102,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     getMonthDetails(month : string, employe : string) {
         return this.http.get(`${url}/month_details?month=${month}&code=${employe}`)
             .map((response: Response) => {
@@ -110,7 +110,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     getEmployeeList(month : string, chantier : string, activite : string) {
         return this.http.get(`${url}/month_employee_details?month=${month}&chantier=${chantier}&activite=${activite}`)
             .map((response: Response) => {
@@ -118,7 +118,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     getChantiers() {
         return this.http.get(`${url}/chantiers`)
             .map((response: Response) => {
@@ -126,7 +126,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     getActivites() {
         return this.http.get(`${url}/activites`)
             .map((response: Response) => {
@@ -134,7 +134,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     getChantierByActivite(chantier : string) {
         return this.http.get(`${url}/chantier_activites?chantier=${chantier}`)
             .map((response: Response) => {
@@ -142,7 +142,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     changeChantier(month: string, employe_code:string, activite_code: string, from_code: string, to_code: string) {
         return this.http.patch(`${url}/change_chantier?month=${month}&employe_code=${employe_code}&activite_code=${activite_code}&from_code=${from_code}&to_code=${to_code}`, {})
             .map((response: Response) => {
@@ -150,7 +150,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     changeActivite(month: string, employe_code:string, chantier_code: string, from_code: string, to_code: string) {
         return this.http.patch(`${url}/change_activite?month=${month}&employe_code=${employe_code}&chantier_code=${chantier_code}&from_code=${from_code}&to_code=${to_code}`, {})
             .map((response: Response) => {
@@ -158,7 +158,7 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
-    
+
     private handleError(error: Response) {
         return Observable.throw(error.status + '-' + error.statusText);
     }
