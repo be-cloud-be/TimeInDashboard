@@ -11,23 +11,23 @@ const url = environment.server;
 console.log('use server' + url);
 
 export interface IEmployeeLine {
-    "employe_code": string,
-    "employe": string
+    "EmployeCode": string,
+    "Employe": string
 }
 
 export interface IChantierLine {
-    "chantier_code": string
-    "chantier": string
+    "ChantierCode": string
+    "Chantier": string
 }
 
 export interface IActiviteLine {
-    "activite_code": string
-    "activite": string
+    "ActiviteCode": string
+    "Activite": string
 }
 
 export interface IEmployeeHoursLine {
-    "employe_code": string,
-    "employe": string,
+    "EmployeCode": string,
+    "Employe": string,
     "Heures": number
 }
 
