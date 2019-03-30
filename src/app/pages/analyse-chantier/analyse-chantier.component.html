@@ -10,7 +10,7 @@
         <div class="col-md-4">
             <nb-card>
                 <label class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" name="customRadio" checked value="activite" [(ngModel)]="graph_conf.mode">
+                  <input type="radio" class="custom-control-input" name="customRadio" checked value="activite" (click)="onByActivite()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">Par activité</span>
                 </label>
@@ -19,7 +19,7 @@
         <div class="col-md-4">
             <nb-card>
                 <label class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" name="customRadio" value="employee" [(ngModel)]="graph_conf.mode">
+                  <input type="radio" class="custom-control-input" name="customRadio" value="employee" (click)="onByEmploye()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">Par employé</span>
                 </label>
@@ -32,11 +32,11 @@
               <nb-card-header>
                 Détails par chantier - {{total_heures}} heures au total
               </nb-card-header>
-            
+
               <nb-card-body>
                 <chart type="horizontalBar" [data]="data" [options]="options" style="width: 100%; height: 800px;" (clickElement)="updateEmployeDetails($event)"></chart>
               </nb-card-body>
-            
+
             </nb-card>
         </div>
     </div>

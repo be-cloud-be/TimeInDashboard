@@ -31,9 +31,17 @@ export interface IEmployeeHoursLine {
     "Heures": number
 }
 
-export interface IMonthDetailsLine {
+export interface IMonthDetailsActivitesLine {
     "ChantierCode": string,
     "Chantier": string,
+    "ActiviteCode": string,
+    "Activite": string,
+    "Heures": number
+}
+
+export interface IMonthDetailsEmployesLine {
+    "EmployeCode": string,
+    "Employe": string,
     "ActiviteCode": string,
     "Activite": string,
     "Heures": number
@@ -106,7 +114,7 @@ export class TimeInService {
     getMonthDetails(month : string, employe : string) {
         return this.http.get(`${url}/month_details?month=${month}&code=${employe}`)
             .map((response: Response) => {
-                 return <IMonthDetailsLine[]>response.json();
+                 return <IMonthDetailsActivitesLine[]>response.json();
              })
              .catch(this.handleError);
     }
@@ -138,7 +146,15 @@ export class TimeInService {
     getChantierByActivite(chantier : string) {
         return this.http.get(`${url}/chantier_activites?chantier=${chantier}`)
             .map((response: Response) => {
-                 return <IMonthDetailsLine[]>response.json();
+                 return <IMonthDetailsActivitesLine[]>response.json();
+             })
+             .catch(this.handleError);
+    }
+
+    getChantierByEmploye(chantier : string) {
+        return this.http.get(`${url}/chantier_employes?chantier=${chantier}`)
+            .map((response: Response) => {
+                 return <IMonthDetailsEmployesLine[]>response.json();
              })
              .catch(this.handleError);
     }
