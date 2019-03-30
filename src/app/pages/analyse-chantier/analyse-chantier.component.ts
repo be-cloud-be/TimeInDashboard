@@ -45,6 +45,13 @@ export class AnalyseChantierComponent implements OnInit {
   };
 
   options = {
+    scales: {
+        xAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
   };
 
   onByActivite() {
