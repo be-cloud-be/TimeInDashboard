@@ -49,10 +49,10 @@ workflows:
       - build:
           filters:
             branches:
-              only: master
+              only: latest
       - publish-latest:
           requires:
             - build
           filters:
             branches:
-              only: master
+              only: latest
