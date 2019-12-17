@@ -17,20 +17,19 @@ export class AnalyseChantierComponent implements OnInit {
   chantier : string;
   chantierList : Observable<IChantierLine[]>;
   chantierMap : Map<string,string>;
+  month : string;
+  monthList : Observable<string[]>;
 
   constructor(private timeInService : TimeInService, private theme: NbThemeService, private modalService: NgbModal) {
     this.chantierList = this.timeInService.getChantiers();
+    this.monthList = this.timeInService.getMonthList();
+    this.month = 'all';
     this.chantierList.subscribe(data => {
       this.chantierMap = new Map();
       for(let c of data) {
         this.chantierMap.set(c.Chantier,c.ChantierCode);
       }
     });
-  }
-
-  onChangeChantier(chantier : string) {
-    this.chantier = chantier;
-    this.updateData();
   }
 
   ngOnInit() {
@@ -63,14 +62,24 @@ export class AnalyseChantierComponent implements OnInit {
     this.graph_conf.mode = 'employe';
     this.updateData();
   }
+  
+  onChangeChantier(chantier : string) {
+    this.chantier = chantier;
+    this.updateData();
+  }
+  
+  onSelectMonth(month : string) {
+    this.month = month;
+    this.updateData();
+  }
 
   updateData() {
     if (this.graph_conf.mode == 'activite') {
-      this.timeInService.getChantierByActivite(this.chantier).subscribe(data => {
+      this.timeInService.getChantierByActivite(this.chantier, this.month).subscribe(data => {
           this.updateGraphData(data);
       });
     } else {
-      this.timeInService.getChantierByEmploye(this.chantier).subscribe(data => {
+      this.timeInService.getChantierByEmploye(this.chantier, this.month).subscribe(data => {
           this.updateGraphData(data);
       });
     }
@@ -115,10 +124,11 @@ export class AnalyseChantierComponent implements OnInit {
     var clickedBar = $event[0];
     if (clickedBar) {
       var chantier = this.chantier;
+      var month = this.month;
       if (this.graph_conf.mode == 'activite') {
         var activite = this.data.labels[clickedBar._index];
         var activite_code = this.data.codes[clickedBar._index];
-        var employeeList = this.timeInService.getEmployeeList('all', chantier, activite);
+        var employeeList = this.timeInService.getEmployeeList(month, chantier, activite);
         var activeModal = this.modalService.open(EmployeeListModalComponent, { size: 'lg', container: 'nb-layout' });
         activeModal.componentInstance.employeeList = employeeList;
         activeModal.componentInstance.chantier = chantier;

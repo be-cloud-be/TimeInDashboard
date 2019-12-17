@@ -14,15 +14,19 @@
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">Par activité</span>
                 </label>
-            </nb-card>
-        </div>
-        <div class="col-md-4">
-            <nb-card>
                 <label class="custom-control custom-radio">
                   <input type="radio" class="custom-control-input" name="customRadio" value="employee" (click)="onByEmploye()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">Par employé</span>
                 </label>
+            </nb-card>
+        </div>
+        <div class="col-md-4">
+            <nb-card>
+                <select class="form-control" (change)="onSelectMonth($event.target.value)">
+                    <option value="all">Tous</option>
+                    <option *ngFor="let month of (monthList | async)" value="{{ month }}">{{ month }}</option>
+                </select>
             </nb-card>
         </div>
     </div>
