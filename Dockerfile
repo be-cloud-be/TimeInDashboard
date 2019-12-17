@@ -1,4 +1,4 @@
-FROM node:10-alpine as builder
+FROM node:8-alpine as builder
 
 RUN apk --no-cache add \
         python \
@@ -7,7 +7,7 @@ RUN apk --no-cache add \
 
 COPY package.json package-lock.json ./
 
-RUN npm install npm@latest -g
+RUN npm install npm@6.9.0 -g
 
 RUN npm install -g @angular/cli
 
