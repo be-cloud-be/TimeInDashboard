@@ -9,7 +9,7 @@ COPY package.json package-lock.json ./
 
 RUN npm install npm@6.9.0 -g
 
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli@7.3.7
 
 RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
 
