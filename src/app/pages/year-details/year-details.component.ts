@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { NbThemeService, NbColorHelper } from '@nebular/theme';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { EmployeeListModalComponent } from './employee-list-modal/employee-list-modal.component';
+import { YearEmployeeListModalComponent } from './year-employee-list-modal/year-employee-list-modal.component';
 
 @Component({
   selector: 'year-details',
@@ -182,7 +182,7 @@ export class YearDetailsComponent implements OnInit {
   updateEmployeDetails($event) {
     var clickedBar = $event[0];
     if (clickedBar) {
-      var activeModal = this.modalService.open(EmployeeListModalComponent, { size: 'lg', container: 'nb-layout' });
+      var activeModal = this.modalService.open(YearEmployeeListModalComponent, { size: 'lg', container: 'nb-layout' });
       activeModal.componentInstance.chantier = this.data.labels[clickedBar._index];
       activeModal.componentInstance.activite = this.data.datasets[clickedBar._datasetIndex].label;
       activeModal.componentInstance.employeeList = this.timeInService.getEmployeeList(this.year, activeModal.componentInstance.chantier, activeModal.componentInstance.activite);

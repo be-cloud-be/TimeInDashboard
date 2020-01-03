@@ -10,6 +10,7 @@ import { MonthDetailsComponent } from './month-details/month-details.component';
 import { YearDetailsComponent } from './year-details/year-details.component';
 import { ChartModule } from 'angular2-chartjs';
 import { EmployeeListModalComponent } from './month-details/employee-list-modal/employee-list-modal.component';
+import { YearEmployeeListModalComponent } from './year-details/year-employee-list-modal/year-employee-list-modal.component';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { AnalyseChantierComponent } from './analyse-chantier/analyse-chantier.component';
 
@@ -32,6 +33,7 @@ const PAGES_COMPONENTS = [
     MonthDetailsComponent,
     YearDetailsComponent,
     EmployeeListModalComponent,
+    YearEmployeeListModalComponent,
     AnalyseChantierComponent,
   ],
   entryComponents: [EmployeeListModalComponent]
