@@ -18,7 +18,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'month-details',
     link: '/pages/month-details',
     home: false,
-  },{
+  },
+  {
+    title: 'Revue annuelle',
+    icon: 'year-details',
+    link: '/pages/year-details',
+    home: false,
+  },
+  {
     title: 'Analyse Chantiers',
     icon: 'analyse-chantier',
     link: '/pages/analyse-chantier',

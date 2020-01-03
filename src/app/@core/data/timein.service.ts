@@ -119,6 +119,14 @@ export class TimeInService {
              })
              .catch(this.handleError);
     }
+    
+    getYearDetails(year : string, employe : string) {
+        return this.http.get(`${url}/year_details?year=${year}&code=${employe}`)
+            .map((response: Response) => {
+                 return <IMonthDetailsActivitesLine[]>response.json();
+             })
+             .catch(this.handleError);
+    }
 
     getEmployeeList(month : string, chantier : string, activite : string) {
         return this.http.get(`${url}/month_employee_details?month=${month}&chantier=${chantier}&activite=${activite}`)

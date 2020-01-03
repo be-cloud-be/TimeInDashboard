@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MonthReviewComponent } from './month-review/month-review.component';
 import { MonthDetailsComponent } from './month-details/month-details.component';
+import { YearDetailsComponent } from './year-details/year-details.component';
 import { AnalyseChantierComponent } from './analyse-chantier/analyse-chantier.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 
@@ -24,6 +25,10 @@ const routes: Routes = [{
     {
       path: 'month-details',
       component: MonthDetailsComponent,
+    },
+    {
+      path: 'year-details',
+      component: YearDetailsComponent,
     },
     {
       path: 'analyse-chantier',
