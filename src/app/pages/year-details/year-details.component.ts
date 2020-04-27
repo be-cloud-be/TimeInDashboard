@@ -26,11 +26,9 @@ export class YearDetailsComponent implements OnInit {
   themeSubscription: any;
 
   color_index = {
-    'Démolition' : '#00000',
-    'Terrassement' : '#FFFF00',
+    'Démolition/Terrassement' : '#00000',
     'Maçonnerie' : '#1CE6FF',
-    'Charpente' : '#FF34FF',
-    'Couverture' : '#FF4A46',
+    'Charpente/Couverture' : '#FF34FF',
     'Isolation intérieure' : '#1B4400',
     'Chassis' : '#3B5DFF',
     'Menuiserie intérieure' : '#FF2F80',
@@ -42,8 +40,7 @@ export class YearDetailsComponent implements OnInit {
     'Plafonnage' : '#00A6AA',
     'Carrelage' : '#636375',
     'Peinture' : '#04F757',
-    'Façade isol/cimentage' : '#1E6E00',
-    'Façade crépis' : '#7900D7',
+    'Façade' : '#1E6E00',
     'Raccordement' : '#A77500',
     'Aménagements extérieurs' : '#A05837',
     'Ferronerie' : '#D790FF',
